@@ -3,6 +3,7 @@ var myApp = new Framework7();
 
 // Export selectors engine
 var $$ = Dom7;
+var pageName = null;
 
 // Add view
 var mainView = myApp.addView('.view-main', {
@@ -11,17 +12,18 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('about', function (page) {
+myApp.onPageInit('about', function(page) {
     // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
+    $$('.create-page').on('click', function() {
         createContentPage();
     });
 });
 
 // Generate dynamic page
 var dynamicPageIndex = 0;
+
 function createContentPage() {
-	mainView.router.loadContent(
+    mainView.router.loadContent(
         '<!-- Top Navbar-->' +
         '<div class="navbar">' +
         '  <div class="navbar-inner">' +
@@ -44,5 +46,16 @@ function createContentPage() {
         '  </div>' +
         '</div>'
     );
-	return;
+    return;
 }
+
+$$(document).on('pageInit', '.page[data-page="index"]', function(e) {
+    ReactDOM.render(React.createElement(
+        "ul",
+        null,
+        mainMenuEntry.map((m, index) => React.createElement(MainMenu, {
+            data: m,
+            key: index
+        }))
+    ), document.getElementById("simpleNav"));
+});
