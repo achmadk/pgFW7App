@@ -58,4 +58,5 @@ $$(document).on('pageInit', '.page[data-page="index"]', function(e) {
             key: index
         }))
     ), document.getElementById("simpleNav"));
+    ReactDOM.render(React.createElement(PanelColumn, { data: sidePanelData }), document.getElementById("sidePanel"));
 });

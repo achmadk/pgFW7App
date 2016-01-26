@@ -10,44 +10,20 @@ var mainMenuEntry = [{
 }];
 
 var MainMenu = React.createClass({
-    displayName: "MainMenu",
-
     render: function() {
         var data = this.props.data;
-        return React.createElement(
-            "li",
-            null,
-            React.createElement(
-                "a", {
-                    href: data.link,
-                    className: "item-link"
-                },
-                React.createElement(
-                    "div", {
-                        className: "item-content"
-                    },
-                    React.createElement(
-                        "div", {
-                            className: "item-inner"
-                        },
-                        React.createElement(
-                            "div", {
-                                className: "item-title"
-                            },
-                            data.text
-                        )
-                    )
-                )
-            )
-        );
+        return <li>
+                <a href={data.link} className="item-link">
+                    <div className="item-content">
+                        <div className="item-inner">
+                            <div className="item-title">{data.text}</div>
+                        </div>
+                    </div>
+                </a>
+            </li>
     }
 });
 
-ReactDOM.render(React.createElement(
-    "ul",
-    null,
-    mainMenuEntry.map((m, index) => React.createElement(MainMenu, {
-        data: m,
-        key: index
-    }))
-), document.getElementById("simpleNav"));
+ReactDOM.render(<ul>{
+    mainMenuEntry.map((m, index) => <MainMenu data={m} key={index} />)
+                }</ul>, document.getElementById("simpleNav"));
