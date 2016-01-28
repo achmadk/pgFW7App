@@ -49,14 +49,4 @@ function createContentPage() {
     return;
 }
 
-$$(document).on('pageInit', '.page[data-page="index"]', function(e) {
-    ReactDOM.render(React.createElement(
-        "ul",
-        null,
-        mainMenuEntry.map((m, index) => React.createElement(MainMenu, {
-            data: m,
-            key: index
-        }))
-    ), document.getElementById("simpleNav"));
-    ReactDOM.render(React.createElement(PanelColumn, { data: sidePanelData }), document.getElementById("sidePanel"));
-});
+$$(document).on('pageInit', '.page[data-page="index"]', app.loadIndexPage);
