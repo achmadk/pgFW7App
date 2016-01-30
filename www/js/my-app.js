@@ -50,3 +50,5 @@ function createContentPage() {
 }
 
 $$(document).on('pageInit', '.page[data-page="index"]', app.loadIndexPage);
+
+myApp.onPageInit('about', app.loadAboutPage);
